@@ -28,6 +28,9 @@ public class Main {
         Name myName = new Name("Jack", "Horner");
         myName.display();
 
+        System.out.println(myName);
+        System.out.println(date);
+
     }
 }
 

@@ -9,6 +9,8 @@ public class MyDate {
     private int month;
     private int year;
 
+    private String monthName;
+
     public MyDate() {
         this.day = 1;
         this.month = 1;
@@ -19,6 +21,8 @@ public class MyDate {
         this.day = day;
         this.month = month;
         this.year = year;
+
+        monthName = Month.of(month).getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
     }
 
 
@@ -47,12 +51,13 @@ public class MyDate {
     }
 
     public void display() {
-        System.out.printf("%d-%d-%d\n", this.day, this.month, this.year);
+
+        System.out.printf("%s %d, %d\n", this.monthName, this.day, this.year);
     }
 
     @Override
     public String toString() {
-        return "Date: " + this.day + " " + this.month + " " + this.year;
+        return "Date: " + this.day + " " + this.monthName + " " + this.year;
     }
 
 }
