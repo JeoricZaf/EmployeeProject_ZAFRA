@@ -107,16 +107,16 @@ public class HourlyEmployee {
     //all should have 2 compute salary functions. 2nd one is bday bonus pay
     public double ComputeSalary(int currentMonth) {
 
-        double base_salary = this.ComputeSalary();
+        double new_salary = this.ComputeSalary();
 
 
 //        if current month is birthmonth, add bonus 5000 salary
         if (currentMonth == this.birthDate.getMonth()) {
-            base_salary += 5000;
+            new_salary += 5000;
 
         }
 
-    return base_salary;
+    return new_salary;
     }
 
 
