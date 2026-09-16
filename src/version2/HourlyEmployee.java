@@ -26,6 +26,7 @@ myDate
 dateHired
 birthDate;
 
+//apply to all employee types
  */
 
 public class HourlyEmployee {
@@ -45,23 +46,27 @@ public class HourlyEmployee {
         this.totalHoursWorked = 0;
         this.ratePerHour = 0;
 
+        this.birthDate = new MyDate();
+        this.dateHired = new MyDate();
+
     }
 
-    public HourlyEmployee(int empID, String fName, String lName ) {
+    public HourlyEmployee(int empID, String fName, String lName, int day, int month, int year) {
         this.empID = empID;
         this.empName = new Name(fName, lName); ;
-        this.totalHoursWorked = totalHoursWorked;
-        this.ratePerHour = ratePerHour;
 
-        this.birthDate = new MyDate();
+        this.dateHired = new MyDate(day, month, year);
 
     }
     
-      public HourlyEmployee(int empID, String fName, float totalHoursWorked, double ratePerHour) {
+      public HourlyEmployee(int empID, String fName, String lName, String mName, float totalHoursWorked, double ratePerHour, int bday, int bmonth, int byear, int Hireday, int Hiremonth, int Hireyear) {
         this.empID = empID;
-        this.empName.setFirstName(fName);
+        this.empName = new Name(fName, lName, mName);
         this.totalHoursWorked = totalHoursWorked;
         this.ratePerHour = ratePerHour;
+
+        this.birthDate = new MyDate(bday, bmonth, byear);
+          this.dateHired = new MyDate(Hireday, Hiremonth, Hireyear);
     }
 
     public int getEmpID() {return empID;}
@@ -75,7 +80,8 @@ public class HourlyEmployee {
 
     public double getRatePerHour() {return ratePerHour;}
     public void setRatePerHour(double ratePerHour) {this.ratePerHour = ratePerHour; }
-     
+
+
     
     public double ComputeSalary() {
 //        Standard working threshold: 5 days * 8 hours/day = 40 regular hours.
@@ -98,6 +104,22 @@ public class HourlyEmployee {
          return salary;
         
     }
+    //all should have 2 compute salary functions. 2nd one is bday bonus pay
+    public double ComputeSalary(int currentMonth) {
+
+        double base_salary = this.ComputeSalary();
+
+
+//        if current month is birthmonth, add bonus 5000 salary
+        if (currentMonth == this.birthDate.getMonth()) {
+            base_salary += 5000;
+
+        }
+
+    return base_salary;
+    }
+
+
     
     public void displayHourlyEmployee(){
         

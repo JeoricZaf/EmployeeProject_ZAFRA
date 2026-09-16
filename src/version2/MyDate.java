@@ -29,7 +29,6 @@ public class MyDate {
     public int getDay() {
         return day;
     }
-
     public void setDay(int day) {
         this.day = day;
     }
@@ -37,7 +36,6 @@ public class MyDate {
     public int getMonth() {
         return month;
     }
-
     public void setMonth(int month) {
         this.month = month;
     }
@@ -45,15 +43,20 @@ public class MyDate {
     public int getYear() {
         return year;
     }
-
     public void setYear(int year) {
         this.year = year;
     }
+
+
+
 
     public void display() {
 
         System.out.printf("%s %d, %d\n", this.monthName, this.day, this.year);
     }
+
+
+
 
     @Override
     public String toString() {
