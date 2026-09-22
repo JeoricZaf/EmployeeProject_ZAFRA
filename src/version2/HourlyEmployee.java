@@ -16,9 +16,10 @@ package version2;
 Version 2 should show Composition - instantiating classes within other classes
 
 
-if current month is birthmonth, add 5000 salary
-    dateHired
-    birthDate;
+if current month is birthmonth, add 5000 salary (Changes computeSalary function)
+    add vars
+        dateHired
+        birthDate;
 
 name should be a class instead of a string
     firstname
@@ -44,7 +45,7 @@ public class HourlyEmployee {
     private double ratePerHour;
 
     private MyDate birthDate;
-    private MyDate dateHired;
+    private MyDate hireDate;
 
     public HourlyEmployee() {
         this.empID = 0;
@@ -52,8 +53,8 @@ public class HourlyEmployee {
         this.totalHoursWorked = 0;
         this.ratePerHour = 0;
 
-        this.birthDate = new MyDate();
-        this.dateHired = new MyDate();
+        this.birthDate = new MyDate(); //by default both dates will be jan 1 2026
+        this.hireDate = new MyDate();
 
     }
 
@@ -61,18 +62,18 @@ public class HourlyEmployee {
         this.empID = empID;
         this.empName = new Name(fName, lName); ;
 
-        this.dateHired = new MyDate(day, month, year);
+        this.hireDate = new MyDate(day, month, year);
 
     }
     
       public HourlyEmployee(int empID, String fName, String lName, String mName, float totalHoursWorked, double ratePerHour, int bday, int bmonth, int byear, int Hireday, int Hiremonth, int Hireyear) {
         this.empID = empID;
-        this.empName = new Name(fName, lName, mName);
+        this.empName = new Name(fName, mName, lName );
         this.totalHoursWorked = totalHoursWorked;
         this.ratePerHour = ratePerHour;
 
         this.birthDate = new MyDate(bday, bmonth, byear);
-          this.dateHired = new MyDate(Hireday, Hiremonth, Hireyear);
+        this.hireDate = new MyDate(Hireday, Hiremonth, Hireyear);
     }
 
     public int getEmpID() {return empID;}
@@ -86,6 +87,22 @@ public class HourlyEmployee {
 
     public double getRatePerHour() {return ratePerHour;}
     public void setRatePerHour(double ratePerHour) {this.ratePerHour = ratePerHour; }
+
+    public MyDate getBirthDate() {return this.birthDate;}
+    public void setBirthDate(int day, int month, int year) {
+        this.birthDate.setDay(day) ; 
+        this.birthDate.setMonth(month); 
+        this.birthDate.setYear(year); 
+    }
+
+    public MyDate getHireDate() {return this.hireDate;}
+    public void setHireDate(int day, int month, int year) {
+        this.hireDate.setDay(day) ; 
+        this.hireDate.setMonth(month); 
+        this.hireDate.setYear(year);  
+    
+    
+    }
 
 
     
@@ -130,7 +147,7 @@ public class HourlyEmployee {
     public void displayHourlyEmployee(){
         
         System.out.printf("%-44s","Employee Type: HourlyEmployee");
-        System.out.print(" | ID: " + this.empID);
+        System.out.printf(" | ID: %-3s",this.empID);
         System.out.print(" | Name: " + this.empName);
         System.out.print(" | Hours Worked: " + this.totalHoursWorked);
         System.out.print(" | Rate per Hour: " +  this.ratePerHour);
@@ -141,13 +158,13 @@ public class HourlyEmployee {
     
     @Override
     public String toString() {
-        return
-                "Employee Type: HourlyEmployee " +
-                " | ID: "+                this.empID + 
-                " | Name: " +            this.empName +
-                " | Hours Worked: " +    this.totalHoursWorked +
-                " | Rate per Hour: " +     this.ratePerHour +
-                " | Computed Salary: " +    this.ComputeSalary();
+        return   
+                String.format("%-44s", "Employee Type: HourlyEmployee") +
+                String.format(" | ID: %-3s", this.empID) +
+                " | Name: " +                       this.empName +
+                " | Hours Worked: " +       this.totalHoursWorked +
+                " | Rate per Hour: " +          this.ratePerHour +
+                " | Computed Salary: " +        this.ComputeSalary();
     }
     
 }

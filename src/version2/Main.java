@@ -4,12 +4,6 @@
  */
 package version2;
 
-import version1.BasePlusCommissionEmployee;
-import version1.CommissionEmployee;
-import version1.HourlyEmployee;
-import version1.PieceWorkerEmployee;
-
-
 /**
  *
  * @author User
@@ -30,6 +24,9 @@ public class Main {
 
         System.out.println(myName);
         System.out.println(date);
+
+         Name myName2 = new Name("Jack", "Son", "Horner");
+         myName2.display();
 
     }
 }
