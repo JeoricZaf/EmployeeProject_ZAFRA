@@ -49,7 +49,7 @@ public class HourlyEmployee {
 
     public HourlyEmployee() {
         this.empID = 0;
-        this.empName = new Name();
+        this.empName = new Name("No_Name");
         this.totalHoursWorked = 0;
         this.ratePerHour = 0;
 
@@ -114,29 +114,31 @@ public class HourlyEmployee {
 //        Total Salary = Regular Pay + Overtime Pay.
                 
         double salary = 0;
+        double OvertimeRate = this.ratePerHour * 1.5;
         
         if (this.totalHoursWorked <= 40) {
             salary = totalHoursWorked * ratePerHour;
         }
         else if (this.totalHoursWorked > 40) { //40 hours pay + overtime pay
-            salary = (40 * this.ratePerHour) +  ( (this.totalHoursWorked - 40) * (this.ratePerHour * 1.5) );
+            double OverTimeHours = this.totalHoursWorked - 40;
+
+            salary = (40 * this.ratePerHour) + ( OverTimeHours * OvertimeRate);
         }
         
         else {System.out.println("Something went wrong");}
                 
-         return salary;
+        return salary;
         
     }
-    //all should have 2 compute salary functions. 2nd one is bday bonus pay
+
+    //all employees will now have 2 compute salary functions thru overloading. 2nd one is bday bonus pay
     public double ComputeSalary(int currentMonth) {
 
         double new_salary = this.ComputeSalary();
 
-
-//        if current month is birthmonth, add bonus 5000 salary
+        //if current month is birthmonth, add bonus 5000 salary
         if (currentMonth == this.birthDate.getMonth()) {
             new_salary += 5000;
-
         }
 
     return new_salary;
@@ -146,12 +148,14 @@ public class HourlyEmployee {
     
     public void displayHourlyEmployee(){
         
-        System.out.printf("%-44s","Employee Type: HourlyEmployee");
+        System.out.printf("%-3s","Employee Type: HourlyEmployee");
         System.out.printf(" | ID: %-3s",this.empID);
-        System.out.print(" | Name: " + this.empName);
+        System.out.print(" | " + this.empName);
+        System.out.print(" | Birthday: "); this.birthDate.display();
         System.out.print(" | Hours Worked: " + this.totalHoursWorked);
         System.out.print(" | Rate per Hour: " +  this.ratePerHour);
         System.out.println(" | Computed Salary: " + this.ComputeSalary() );
+        System.out.println(" | BirthMonth Salary: " + this.ComputeSalary(this.birthDate.getMonth()) );
                 
         
     }

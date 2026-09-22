@@ -15,6 +15,8 @@ public class MyDate {
         this.day = 1; //default date if none given
         this.month = 1;
         this.year = 2026;
+
+        monthName = Month.of(month).getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
     }
 
     public MyDate(int day, int month, int year) {
@@ -48,11 +50,16 @@ public class MyDate {
     }
 
 
+    public String getMonthName() {
+        return monthName;
+    }
+
+
 
 
     public void display() {
 
-        System.out.printf("%s %d, %d\n", this.monthName, this.day, this.year);
+        System.out.printf("%s %d, %d", this.monthName, this.day, this.year);
     }
 
 

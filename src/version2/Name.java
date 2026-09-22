@@ -11,6 +11,12 @@ public class Name {
         this.lastName = "";
     }
 
+    public Name(String firstName) {
+        this.firstName = firstName;
+        this.middleName = "";
+        this.lastName = "";
+    }
+
     public Name(String firstName, String lastName) {
         this.firstName = firstName;
         this.middleName = "";

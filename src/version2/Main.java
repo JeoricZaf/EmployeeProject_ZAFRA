@@ -28,6 +28,9 @@ public class Main {
          Name myName2 = new Name("Jack", "Son", "Horner");
          myName2.display();
 
+         HourlyEmployee emp = new HourlyEmployee();
+         emp.displayHourlyEmployee();
+
     }
 }
 
