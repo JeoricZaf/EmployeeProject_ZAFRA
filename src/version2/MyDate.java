@@ -85,14 +85,14 @@ public class MyDate {
 
     public void display() {
 
-        System.out.printf("Date: %d %s %d", this.day, this.monthName, this.year);
+        System.out.printf("Date: %02d %s %d", this.day, this.monthName, this.year);
     }
 
 
 
     @Override
     public String toString() {
-        return String.format("%d %s %d", this.day, this.monthName, this.year);
+        return String.format("%02d %s %d", this.day, this.monthName, this.year);
     }
 
 }

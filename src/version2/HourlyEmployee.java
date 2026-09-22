@@ -159,10 +159,11 @@ public class HourlyEmployee {
         
         System.out.printf("ID: %-3s",this.empID);
         System.out.print(" | Name: " + this.empName);
+        System.out.print(" | DOB: " + this.birthDate); 
+        System.out.print(" | Hired: " + this.hireDate); 
         System.out.print(" | Hours: " + this.totalHoursWorked);
         System.out.print(" | Rate/Hour: ₱" +  this.ratePerHour);
         System.out.print(" | Computed Salary: " + this.computeSalary() );
-        System.out.print(" | Birthday: " + this.birthDate); 
         System.out.println(" | BirthMonth Salary: " + this.computeSalary(this.birthDate.getMonth()) );
                 
         
@@ -173,10 +174,12 @@ public class HourlyEmployee {
         return   
                 String.format("%-28s", "HourlyEmployee") +
                 String.format(" [ID: %-3s", this.empID) +
-                ", Name: " +                       this.empName +
-                ", Hours: "+          this.totalHoursWorked +
-                ", Rate: " +          this.ratePerHour +
-                ", Total Salary: " +  this.computeSalary() +
+                ", Name: " +  this.empName +
+                ", DOB: " +   this.birthDate +
+                ", Hired: " + this.hireDate +
+                ", Hours: " + this.totalHoursWorked +
+                ", Rate: ₱" + this.ratePerHour +
+                ", Total Salary: ₱" +  this.computeSalary() +
                 " ]"
                 ;
     }
