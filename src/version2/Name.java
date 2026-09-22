@@ -6,9 +6,9 @@ public class Name {
     private String lastName;
 
     public Name() {
-        this.firstName = "";
-        this.middleName = "";
-        this.lastName = "";
+        this.firstName = "N/A";
+        this.middleName = "N/A";
+        this.lastName = "N/A";
     }
 
     public Name(String firstName) {
@@ -53,7 +53,7 @@ public class Name {
 
 
     public void display() {
-        
+
         if (this.middleName == "") {
             System.out.println(this.lastName + ", " + this.firstName);
         } 

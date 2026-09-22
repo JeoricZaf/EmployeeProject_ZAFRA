@@ -20,6 +20,11 @@ public class MyDate {
     }
 
     public MyDate(int day, int month, int year) {
+        if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year) ) {
+             System.out.println("Invalid date Inputted");
+             return;
+        } 
+
         this.day = day;
         this.month = month;
         this.year = year;
@@ -32,21 +37,33 @@ public class MyDate {
         return day;
     }
     public void setDay(int day) {
-        this.day = day;
+        //validate day input
+        if (isValidDay(day)) {
+            this.day = day;
+        }
+        else System.out.println("Invalid day inputted");
+        
     }
 
     public int getMonth() {
         return month;
     }
     public void setMonth(int month) {
-        this.month = month;
+        if (isValidMonth(month)) {
+            this.month = month;
+        }
+        else System.out.println("Invalid Month Inputted");
+
     }
 
     public int getYear() {
         return year;
     }
     public void setYear(int year) {
-        this.year = year;
+        if (isValidYear(year)) {
+            this.year = year;
+        }
+        else System.out.println("Invalid Year Inputted");
     }
 
 
@@ -55,18 +72,27 @@ public class MyDate {
     }
 
 
+    private boolean isValidDay(int day) {
+        return (1 <= day && day <= 31) ? true:false;
+    }
+    private boolean isValidMonth(int month) {
+        return (1 <= month && month <= 12) ? true:false;
+    }
+    private boolean isValidYear(int year) {
+        return (1 <= year) ? true:false;
+    }
 
 
     public void display() {
 
-        System.out.printf("Date: %s %d, %d", this.monthName, this.day, this.year);
+        System.out.printf("Date: %d %s %d", this.day, this.monthName, this.year);
     }
 
 
 
     @Override
     public String toString() {
-        return String.format("%s %d, %d", this.monthName, this.day, this.year);
+        return String.format("%d %s %d", this.day, this.monthName, this.year);
     }
 
 }
