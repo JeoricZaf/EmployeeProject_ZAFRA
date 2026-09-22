@@ -7,7 +7,7 @@ package version1;
 /**
  * Base Version
  * 
- * 
+ * Learn the basics of java, tostring, override
  *
  * @author User
  */

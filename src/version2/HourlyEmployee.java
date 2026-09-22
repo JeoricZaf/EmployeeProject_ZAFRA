@@ -17,28 +17,29 @@ Version 2 should show Composition - instantiating classes within other classes
 
 
 if current month is birthmonth, add 5000 salary
+    dateHired
+    birthDate;
 
 name should be a class instead of a string
     firstname
     lastname
     middle
 
-myDate
+myDate should be a class
     int date
     int month
     int year
 
-dateHired
-birthDate;
 
 //apply to all employee types
+
+
  */
 
 public class HourlyEmployee {
     
     private int empID;
     private Name empName;
-        //change this to a class
     private float totalHoursWorked;
     private double ratePerHour;
 

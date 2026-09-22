@@ -48,20 +48,16 @@ public class Name {
 
     public void display() {
         if (this.middleName == "") {
-            System.out.println(
-                    this.lastName + ", " + this.firstName
-            );
-
-        } else {
-            System.out.println(
-                    this.lastName + ", " + this.firstName + " " + this.middleName.charAt(0) + "."
-            );
-    }
+            System.out.println(this.lastName + ", " + this.firstName);
+        } 
+        else {
+            System.out.println( this.lastName + ", " + this.firstName + " " + this.middleName.charAt(0) + ".");
+        }
     }
 
 
     @Override
     public String toString() {
-        return this.firstName + " " + this.middleName + " " + this.lastName;
+        return String.format("Full Name: %s %s %s", this.firstName, this.middleName, this.lastName);
     }
 }

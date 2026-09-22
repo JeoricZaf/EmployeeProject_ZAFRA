@@ -12,7 +12,7 @@ public class MyDate {
     private String monthName;
 
     public MyDate() {
-        this.day = 1;
+        this.day = 1; //default date if none given
         this.month = 1;
         this.year = 2026;
     }
@@ -57,10 +57,9 @@ public class MyDate {
 
 
 
-
     @Override
     public String toString() {
-        return "Date: " + this.day + " " + this.monthName + " " + this.year;
+        return String.format("Date: %s %d, %d", this.monthName, this.day, this.year);
     }
 
 }
