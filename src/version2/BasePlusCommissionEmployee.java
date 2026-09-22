@@ -25,13 +25,13 @@ public class BasePlusCommissionEmployee {
         this.totalSale = 0;
         this.baseSalary = 0;
     }
-    BasePlusCommissionEmployee(int empID, String empName) {
+    BasePlusCommissionEmployee(int empID, String firstName, String lastName) {
         this.empID = empID;
-        this.empName = empName;
+        this.empName = new Name(firstName, lastName);
     }
-    BasePlusCommissionEmployee(int empID, String empName, double totalSale, double baseSalary) {
+    BasePlusCommissionEmployee(int empID, String firstName, String middleName, String lastName, double totalSale, double baseSalary) {
         this.empID = empID;
-        this.empName = empName;
+        this.empName = new Name(firstName, middleName, lastName);
         this.totalSale = totalSale;
         this.baseSalary = baseSalary;
     }
@@ -47,11 +47,13 @@ public class BasePlusCommissionEmployee {
     }
     
 
-    public String getEmpName() {
+    public Name getEmpName() {
         return this.empName;
     }
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setEmpName(String firstName, String middleName, String lastName) {
+        this.empName.setFirstName(firstName);
+        this.empName.setMiddleName(middleName);
+        this.empName.setLastName(lastName);
     }
 
     public double getTotalSale() {

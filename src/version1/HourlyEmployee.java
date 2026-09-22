@@ -5,6 +5,9 @@
 package version1;
 
 /**
+ * Base Version
+ * 
+ * 
  *
  * @author User
  */
@@ -26,8 +29,8 @@ public class HourlyEmployee {
     public HourlyEmployee(int empID, String empName) {
         this.empID = empID;
         this.empName = empName;
-        this.totalHoursWorked = totalHoursWorked;
-        this.ratePerHour = ratePerHour;
+        this.totalHoursWorked = 0;
+        this.ratePerHour = 0;
     }
     
       public HourlyEmployee(int empID, String empName, float totalHoursWorked, double ratePerHour) {
@@ -75,7 +78,7 @@ public class HourlyEmployee {
     public void displayHourlyEmployee(){
         
         System.out.printf("%-44s","Employee Type: HourlyEmployee");
-        System.out.print(" | ID: " + this.empID);
+        System.out.printf(" | ID: %-3s",this.empID);
         System.out.print(" | Name: " + this.empName);
         System.out.print(" | Hours Worked: " + this.totalHoursWorked);
         System.out.print(" | Rate per Hour: " +  this.ratePerHour);
@@ -86,13 +89,13 @@ public class HourlyEmployee {
     
     @Override
     public String toString() {
-        return
-                "Employee Type: HourlyEmployee " +
-                " | ID: "+                this.empID + 
-                " | Name: " +            this.empName +
-                " | Hours Worked: " +    this.totalHoursWorked +
-                " | Rate per Hour: " +     this.ratePerHour +
-                " | Computed Salary: " +    this.ComputeSalary();
+        return   
+                String.format("%-44s", "Employee Type: HourlyEmployee") +
+                String.format(" | ID: %-3s", this.empID) +
+                " | Name: " +                       this.empName +
+                " | Hours Worked: " +       this.totalHoursWorked +
+                " | Rate per Hour: " +          this.ratePerHour +
+                " | Computed Salary: " +        this.ComputeSalary();
     }
     
 }

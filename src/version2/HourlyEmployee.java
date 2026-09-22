@@ -5,11 +5,16 @@
 package version2;
 
 /**
+ * 
+ * 
  *
  * @author User
  */
 
 /*
+
+Version 2 should show Composition - instantiating classes within other classes
+
 
 if current month is birthmonth, add 5000 salary
 

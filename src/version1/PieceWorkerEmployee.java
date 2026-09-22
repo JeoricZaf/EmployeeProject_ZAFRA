@@ -82,18 +82,19 @@ public class PieceWorkerEmployee {
     
     public void displayBasePlusCommissionEmployee() {
         
-        System.out.printf("%-45s","Employee Type: BasePlusCommissionEmployee ");
-        System.out.print("| ID: "+ this.empID);
-        System.out.print("| Name: "+ this.empName);
-        System.out.print("| Total Sale: "+ this.totalPiecesFinished);
-        System.out.println("| Base Salary: "+ this.ratePerPiece);
+        System.out.printf("%-44s","Employee Type: PieceWorkerEmployee");
+        System.out.printf(" | ID: %-3s",this.empID);
+        System.out.print(" | Name: "+ this.empName);
+        System.out.print(" | Total Sale: "+ this.totalPiecesFinished);
+        System.out.println(" | Base Salary: "+ this.ratePerPiece);
     }
     
     
     @Override
         public String toString() {
-            return "Employee Type: BasePlusCommissionEmployee " + 
-                   " | ID: " + this.empID +
+            return 
+                    String.format("%-44s", "Employee Type: PieceWorkerEmployee") +
+                    String.format(" | ID: %-3s", this.empID) +
                    " | Name: " + this.empName +
                    " | Total Pieces Finished: " + this.totalPiecesFinished+
                    " | Rate Per Piece: " + this.ratePerPiece +

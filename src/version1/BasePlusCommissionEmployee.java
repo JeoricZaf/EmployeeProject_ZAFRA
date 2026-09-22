@@ -25,6 +25,10 @@ public class BasePlusCommissionEmployee {
     BasePlusCommissionEmployee(int empID, String empName) {
         this.empID = empID;
         this.empName = empName;
+        this.totalSale = 0;
+        this.baseSalary= 0;
+
+
     }
     BasePlusCommissionEmployee(int empID, String empName, double totalSale, double baseSalary) {
         this.empID = empID;
@@ -96,23 +100,24 @@ public class BasePlusCommissionEmployee {
     
     public void displayBasePlusCommissionEmployee() {
         
-        System.out.printf("%-45s", "Employee Type: BasePlusCommissionEmployee ");
-        System.out.print("| ID: "+ this.empID);
-        System.out.print("| Name: "+ this.empName);
-        System.out.print("| Total Sale: "+ this.totalSale);
-        System.out.println("| Base Salary: "+ this.baseSalary);
+        System.out.printf("%-44s", "Employee Type: BasePlusCommissionEmployee");
+        System.out.printf(" | ID: %-3s",this.empID);
+        System.out.print(" | Name: "+ this.empName);
+        System.out.print(" | Total Sale: "+ this.totalSale);
+        System.out.println(" | Base Salary: "+ this.baseSalary);
     }
     
     
     @Override
         public String toString() {
-            return "Employee Type: BasePlusCommissionEmployee " + 
-                   "| ID: " + this.empID +
-                   "| Name: " + this.empName +
-                   "| Base Salary: " + this.baseSalary +
-                   "| Total Sales: " + this.totalSale +
-                   "| Commission Rate: " + this.commissionRate +
-                   "| Total Base Plus Commission: " + this.computeSalary();
+            return 
+                    String.format("%-44s", "Employee Type: BasePlusCommissionEmployee") +
+                    String.format(" | ID: %-3s", this.empID) +
+                   " | Name: " + this.empName +
+                   " | Base Salary: " + this.baseSalary +
+                   " | Total Sales: " + this.totalSale +
+                   " | Commission Rate: " + this.commissionRate +
+                   " | Total Base Plus Commission: " + this.computeSalary();
             
         }
     
