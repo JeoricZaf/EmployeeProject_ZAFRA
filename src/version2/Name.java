@@ -53,6 +53,7 @@ public class Name {
 
 
     public void display() {
+        
         if (this.middleName == "") {
             System.out.println(this.lastName + ", " + this.firstName);
         } 
@@ -64,6 +65,6 @@ public class Name {
 
     @Override
     public String toString() {
-        return String.format("Full Name: %s %s %s", this.firstName, this.middleName, this.lastName);
+        return String.format("%s %s %s", this.firstName, this.middleName, this.lastName);
     }
 }

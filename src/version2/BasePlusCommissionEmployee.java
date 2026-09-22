@@ -8,68 +8,86 @@ package version2;
  *
  * @author User
  */
-
-
-
 public class BasePlusCommissionEmployee {
     
     private int empID;
     private Name empName;
+    private MyDate birthDate;
+    private MyDate hireDate;
+
     private double totalSale;
     private double baseSalary;
     private double commissionRate;
     
     BasePlusCommissionEmployee() {
         this.empID = 0;
-        this.empName = new Name();
+        this.empName = new Name("No_Name");
         this.totalSale = 0;
         this.baseSalary = 0;
+
+        this.birthDate = new MyDate(); //by default both dates will be jan 1 2026
+        this.hireDate = new MyDate();
     }
-    BasePlusCommissionEmployee(int empID, String firstName, String lastName) {
+    BasePlusCommissionEmployee(int empID, String firstName, String lastName, int day, int month, int year) {
         this.empID = empID;
         this.empName = new Name(firstName, lastName);
+
+        this.hireDate = new MyDate(day, month, year);
     }
-    BasePlusCommissionEmployee(int empID, String firstName, String middleName, String lastName, double totalSale, double baseSalary) {
+    BasePlusCommissionEmployee(int empID, String firstName, String middleName, String lastName, double totalSale, double baseSalary, int bday, int bmonth, int byear, int Hireday, int Hiremonth, int Hireyear) {
         this.empID = empID;
         this.empName = new Name(firstName, middleName, lastName);
         this.totalSale = totalSale;
         this.baseSalary = baseSalary;
+
+        this.birthDate = new MyDate(bday, bmonth, byear);
+        this.hireDate = new MyDate(Hireday, Hiremonth, Hireyear);
     }
 
 
 
 
-    public int getEmpID() {
-        return this.empID;
-    }
-    public void setEmpID(int empID) {
-        this.empID = empID;
-    }
+
+
+    public int getEmpID() {return this.empID;}
+    public void setEmpID(int empID) {this.empID = empID;}
     
-
-    public Name getEmpName() {
-        return this.empName;
-    }
+    public Name getEmpName() {return this.empName;}
     public void setEmpName(String firstName, String middleName, String lastName) {
         this.empName.setFirstName(firstName);
         this.empName.setMiddleName(middleName);
         this.empName.setLastName(lastName);
     }
 
-    public double getTotalSale() {
-        return totalSale;
-    }
-    public void setTotalSale(double totalSale) {
-        this.totalSale = totalSale;
+    public MyDate getBirthDate() {return this.birthDate;}
+    public void setBirthDate(int day, int month, int year) {
+        this.birthDate.setDay(day) ; 
+        this.birthDate.setMonth(month); 
+        this.birthDate.setYear(year); 
     }
 
-    public double getBaseSalary() {
-        return baseSalary;
-    }
-    public void setBaseSalary(double baseSalary) {
-        this.baseSalary = baseSalary;
-    }
+    public MyDate getHireDate() {return this.hireDate;}
+    public void setHireDate(int day, int month, int year) {
+        this.hireDate.setDay(day) ; 
+        this.hireDate.setMonth(month); 
+        this.hireDate.setYear(year);  
     
+    
+    }
+
+
+    public double getTotalSale() {return totalSale;}
+    public void setTotalSale(double totalSale) {this.totalSale = totalSale;
+    }
+
+    public double getBaseSalary() {return baseSalary;}
+    public void setBaseSalary(double baseSalary) {this.baseSalary = baseSalary;}
+    
+
+
+
+
+
     public double computeSalary() {
         
         double Commission = 0;
@@ -101,6 +119,19 @@ public class BasePlusCommissionEmployee {
         
         return Salary;
     }
+
+    public double computeSalary(int currentMonth) {
+
+        double new_salary = this.computeSalary();
+
+        //if current month is birthmonth, add bonus 5000 salary
+        if (currentMonth == this.birthDate.getMonth()) {
+            new_salary += 5000;
+        }
+
+        return new_salary;
+    }
+
     
     public void displayBasePlusCommissionEmployee() {
         
@@ -108,7 +139,9 @@ public class BasePlusCommissionEmployee {
         System.out.printf(" | ID: %-3s",this.empID);
         System.out.print(" | Name: "+ this.empName);
         System.out.print(" | Total Sale: "+ this.totalSale);
-        System.out.println(" | Base Salary: "+ this.baseSalary);
+        System.out.print(" | Base Salary: "+ this.baseSalary);
+        System.out.print(" | Commission Rate: "+ this.commissionRate);
+        System.out.print(" | Total Salary: "+ this.computeSalary() );
     }
     
     
@@ -118,8 +151,8 @@ public class BasePlusCommissionEmployee {
                     String.format("%-44s", "Employee Type: BasePlusCommissionEmployee") +
                     String.format(" | ID: %-3s", this.empID) +
                    " | Name: " + this.empName +
-                   " | Base Salary: " + this.baseSalary +
                    " | Total Sales: " + this.totalSale +
+                   " | Base Salary: " + this.baseSalary +
                    " | Commission Rate: " + this.commissionRate +
                    " | Total Base Plus Commission: " + this.computeSalary();
             

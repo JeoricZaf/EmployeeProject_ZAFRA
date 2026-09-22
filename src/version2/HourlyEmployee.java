@@ -41,52 +41,54 @@ public class HourlyEmployee {
     
     private int empID;
     private Name empName;
+    private MyDate birthDate;
+    private MyDate hireDate;
+
     private float totalHoursWorked;
     private double ratePerHour;
 
-    private MyDate birthDate;
-    private MyDate hireDate;
+    
 
     public HourlyEmployee() {
         this.empID = 0;
         this.empName = new Name("No_Name");
-        this.totalHoursWorked = 0;
-        this.ratePerHour = 0;
-
         this.birthDate = new MyDate(); //by default both dates will be jan 1 2026
         this.hireDate = new MyDate();
+        
+        this.totalHoursWorked = 0;
+        this.ratePerHour = 0;
 
     }
 
     public HourlyEmployee(int empID, String fName, String lName, int day, int month, int year) {
         this.empID = empID;
         this.empName = new Name(fName, lName); ;
-
         this.hireDate = new MyDate(day, month, year);
+
 
     }
     
       public HourlyEmployee(int empID, String fName, String lName, String mName, float totalHoursWorked, double ratePerHour, int bday, int bmonth, int byear, int Hireday, int Hiremonth, int Hireyear) {
         this.empID = empID;
         this.empName = new Name(fName, mName, lName );
-        this.totalHoursWorked = totalHoursWorked;
-        this.ratePerHour = ratePerHour;
-
         this.birthDate = new MyDate(bday, bmonth, byear);
         this.hireDate = new MyDate(Hireday, Hiremonth, Hireyear);
+        
+        this.totalHoursWorked = totalHoursWorked;
+        this.ratePerHour = ratePerHour;
     }
+
+
 
     public int getEmpID() {return empID;}
     public void setEmpID(int empID) {this.empID = empID;}
 
     public Name getEmpName() {return empName;}
-    public void setEmpName(Name empName) {this.empName = empName;}
-
-    public float getTotalHoursWorked() {return totalHoursWorked;}
-    public void setTotalHoursWorked(float totalHoursWorked) {this.totalHoursWorked = totalHoursWorked;}
-
-    public double getRatePerHour() {return ratePerHour;}
-    public void setRatePerHour(double ratePerHour) {this.ratePerHour = ratePerHour; }
+    public void setEmpName(String firstName, String middleName, String lastName) {
+        this.empName.setFirstName(firstName);
+        this.empName.setMiddleName(middleName);
+        this.empName.setLastName(lastName);
+    }
 
     public MyDate getBirthDate() {return this.birthDate;}
     public void setBirthDate(int day, int month, int year) {
@@ -100,13 +102,20 @@ public class HourlyEmployee {
         this.hireDate.setDay(day) ; 
         this.hireDate.setMonth(month); 
         this.hireDate.setYear(year);  
-    
-    
+        
     }
 
+    public float getTotalHoursWorked() {return totalHoursWorked;}
+    public void setTotalHoursWorked(float totalHoursWorked) {this.totalHoursWorked = totalHoursWorked;}
+
+    public double getRatePerHour() {return ratePerHour;}
+    public void setRatePerHour(double ratePerHour) {this.ratePerHour = ratePerHour; }
 
     
-    public double ComputeSalary() {
+
+
+    
+    public double computeSalary() {
 //        Standard working threshold: 5 days * 8 hours/day = 40 regular hours.
 //        Hours <= 40: Salary = totalHoursWorked * ratePerHour.
 //        Hours > 40: Regular Pay = 40 * ratePerHour; 
@@ -125,16 +134,16 @@ public class HourlyEmployee {
             salary = (40 * this.ratePerHour) + ( OverTimeHours * OvertimeRate);
         }
         
-        else {System.out.println("Something went wrong");}
+        else {System.out.println("Something went wrong");return -1;} 
                 
         return salary;
         
     }
 
     //all employees will now have 2 compute salary functions thru overloading. 2nd one is bday bonus pay
-    public double ComputeSalary(int currentMonth) {
+    public double computeSalary(int currentMonth) {
 
-        double new_salary = this.ComputeSalary();
+        double new_salary = this.computeSalary();
 
         //if current month is birthmonth, add bonus 5000 salary
         if (currentMonth == this.birthDate.getMonth()) {
@@ -150,12 +159,12 @@ public class HourlyEmployee {
         
         System.out.printf("%-3s","Employee Type: HourlyEmployee");
         System.out.printf(" | ID: %-3s",this.empID);
-        System.out.print(" | " + this.empName);
-        System.out.print(" | Birthday: "); this.birthDate.display();
+        System.out.print(" | Name: " + this.empName);
+        System.out.print(" | Birthday: " + this.birthDate); 
         System.out.print(" | Hours Worked: " + this.totalHoursWorked);
         System.out.print(" | Rate per Hour: " +  this.ratePerHour);
-        System.out.println(" | Computed Salary: " + this.ComputeSalary() );
-        System.out.println(" | BirthMonth Salary: " + this.ComputeSalary(this.birthDate.getMonth()) );
+        System.out.println(" | Computed Salary: " + this.computeSalary() );
+        System.out.println(" | BirthMonth Salary: " + this.computeSalary(this.birthDate.getMonth()) );
                 
         
     }
@@ -168,7 +177,7 @@ public class HourlyEmployee {
                 " | Name: " +                       this.empName +
                 " | Hours Worked: " +       this.totalHoursWorked +
                 " | Rate per Hour: " +          this.ratePerHour +
-                " | Computed Salary: " +        this.ComputeSalary();
+                " | Computed Salary: " +        this.computeSalary();
     }
     
 }

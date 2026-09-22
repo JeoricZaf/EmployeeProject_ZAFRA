@@ -18,6 +18,7 @@ public class Main {
         MyDate date = new MyDate(2,3,2003);
 
         date.display();
+        System.out.println();
 
         Name myName = new Name("Jack", "Horner");
         myName.display();
