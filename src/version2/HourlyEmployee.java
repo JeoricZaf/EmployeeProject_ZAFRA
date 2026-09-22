@@ -157,13 +157,12 @@ public class HourlyEmployee {
     
     public void displayHourlyEmployee(){
         
-        System.out.printf("%-3s","Employee Type: HourlyEmployee");
-        System.out.printf(" | ID: %-3s",this.empID);
+        System.out.printf("ID: %-3s",this.empID);
         System.out.print(" | Name: " + this.empName);
+        System.out.print(" | Hours: " + this.totalHoursWorked);
+        System.out.print(" | Rate/Hour: ₱" +  this.ratePerHour);
+        System.out.print(" | Computed Salary: " + this.computeSalary() );
         System.out.print(" | Birthday: " + this.birthDate); 
-        System.out.print(" | Hours Worked: " + this.totalHoursWorked);
-        System.out.print(" | Rate per Hour: " +  this.ratePerHour);
-        System.out.println(" | Computed Salary: " + this.computeSalary() );
         System.out.println(" | BirthMonth Salary: " + this.computeSalary(this.birthDate.getMonth()) );
                 
         
@@ -172,13 +171,19 @@ public class HourlyEmployee {
     @Override
     public String toString() {
         return   
-                String.format("%-44s", "Employee Type: HourlyEmployee") +
-                String.format(" | ID: %-3s", this.empID) +
-                " | Name: " +                       this.empName +
-                " | Hours Worked: " +       this.totalHoursWorked +
-                " | Rate per Hour: " +          this.ratePerHour +
-                " | Computed Salary: " +        this.computeSalary();
+                String.format("%-28s", "HourlyEmployee") +
+                String.format(" [ID: %-3s", this.empID) +
+                ", Name: " +                       this.empName +
+                ", Hours: "+          this.totalHoursWorked +
+                ", Rate: " +          this.ratePerHour +
+                ", Total Salary: " +  this.computeSalary() +
+                " ]"
+                ;
     }
+
+        
     
+
+
 }
 

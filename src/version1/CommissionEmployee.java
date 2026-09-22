@@ -89,9 +89,8 @@ public class CommissionEmployee {
     }
     
     public void displayCommissionEmployee() {
-        
-        System.out.printf("%-44s","Employee Type: CommissionEmployee");
-        System.out.printf(" | ID: %-3s",this.empID);
+                
+        System.out.printf("ID: %-3s",this.empID);
         System.out.print(" | Name: "+ this.empName);
         System.out.println(" | Total Sale: "+ this.totalSale);
     }
@@ -100,10 +99,11 @@ public class CommissionEmployee {
     @Override
         public String toString() {
             return 
-                    String.format("%-44s", "Employee Type: CommissionEmployee") +
-                    String.format(" | ID: %-3s", this.empID) +
-                   " | Name: " + this.empName +
-                   " | Commission Pay: " + this.computeSalary();
+                    String.format("%-28s", "CommissionEmployee") +
+                    String.format(" [ID: %-3s", this.empID) +
+                   ", Name: " + this.empName +
+                   ", Commission Pay: " + this.computeSalary()+
+                    "]";
             
         }
     

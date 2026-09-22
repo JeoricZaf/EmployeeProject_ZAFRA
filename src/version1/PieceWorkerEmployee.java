@@ -81,25 +81,25 @@ public class PieceWorkerEmployee {
     }
     
     public void displayBasePlusCommissionEmployee() {
-        
-        System.out.printf("%-44s","Employee Type: PieceWorkerEmployee");
-        System.out.printf(" | ID: %-3s",this.empID);
+    
+        System.out.printf("ID: %-3s",this.empID);
         System.out.print(" | Name: "+ this.empName);
-        System.out.print(" | Total Sale: "+ this.totalPiecesFinished);
-        System.out.println(" | Base Salary: "+ this.ratePerPiece);
+        System.out.print(" | Pieces Finished: "+ this.totalPiecesFinished);
+        System.out.print(" | Rate/Piece: ₱"+ this.ratePerPiece);
+        System.out.println(" | Total Salary: ₱" + this.computeSalary());
     }
     
     
     @Override
         public String toString() {
             return 
-                    String.format("%-44s", "Employee Type: PieceWorkerEmployee") +
-                    String.format(" | ID: %-3s", this.empID) +
-                   " | Name: " + this.empName +
-                   " | Total Pieces Finished: " + this.totalPiecesFinished+
-                   " | Rate Per Piece: " + this.ratePerPiece +
-                   " | Total Salary: " + this.computeSalary();
-            
+                    String.format("%-28s", "PieceWorkerEmployee") +
+                    String.format(" [ID: %-3s", this.empID) +
+                   ", Name: " + this.empName +
+                   ", Pieces Finished: " + this.totalPiecesFinished +
+                   ", Rate/Piece: ₱" + this.ratePerPiece +
+                   ", Total Salary: ₱" + this.computeSalary() +
+                    "]";
         }
     
     

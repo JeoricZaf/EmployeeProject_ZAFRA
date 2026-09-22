@@ -100,8 +100,7 @@ public class BasePlusCommissionEmployee {
     
     public void displayBasePlusCommissionEmployee() {
         
-        System.out.printf("%-44s", "Employee Type: BasePlusCommissionEmployee");
-        System.out.printf(" | ID: %-3s",this.empID);
+        System.out.printf("ID: %-3s",this.empID);
         System.out.print(" | Name: "+ this.empName);
         System.out.print(" | Total Sale: "+ this.totalSale);
         System.out.println(" | Base Salary: "+ this.baseSalary);
@@ -111,13 +110,14 @@ public class BasePlusCommissionEmployee {
     @Override
         public String toString() {
             return 
-                    String.format("%-44s", "Employee Type: BasePlusCommissionEmployee") +
-                    String.format(" | ID: %-3s", this.empID) +
-                   " | Name: " + this.empName +
-                   " | Base Salary: " + this.baseSalary +
-                   " | Total Sales: " + this.totalSale +
-                   " | Commission Rate: " + this.commissionRate +
-                   " | Total Base Plus Commission: " + this.computeSalary();
+                    String.format("%-28s", "BasePlusCommissionEmployee") +
+                    String.format(" [ID: %-3s", this.empID) +
+                   ", Name: " + this.empName +
+                   ", Total Sales: " + this.totalSale +
+                   ", Commission Rate: " + this.commissionRate +
+                   ", Base Salary: " + this.baseSalary +
+                   ", Total Base Plus Commission: " + this.computeSalary() +
+                   " ]";
             
         }
     
