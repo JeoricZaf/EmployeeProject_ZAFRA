@@ -20,42 +20,77 @@ public class Employee implements Cloneable {
     private MyDate hireDate;
     private double Salary;
 
-    public int getEmpID() {
-        return empID;
+    public Employee() {
+        this.empID = 0;
+        this.empName = new Name();
+        this.birthDate = new MyDate();
+        this.hireDate = new MyDate();
     }
-
-    public void setEmpID(int empID) {
+    public Employee(int empID, Name empName, MyDate birthDate, MyDate hireDate) {
         this.empID = empID;
-    }
-
-    public Name getEmpName() {
-        return empName;
-    }
-
-    public void setEmpName(Name empName) {
         this.empName = empName;
-    }
-
-    public MyDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(MyDate birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public MyDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(MyDate hireDate) {
         this.hireDate = hireDate;
     }
 
+    public int getEmpID() {return empID;}
+    public void setEmpID(int empID) { this.empID = empID;}
 
+    public Name getEmpName() {return empName;  }
+    public void setEmpName(Name empName) {this.empName = empName;}
+
+    public MyDate getBirthDate() { return birthDate;}
+    public void setBirthDate(MyDate birthDate) {this.birthDate = birthDate;}
+
+    public MyDate getHireDate() { return hireDate;    }
+    public void setHireDate(MyDate hireDate) {  this.hireDate = hireDate;    }
+
+
+    public double ComputeSalary(int currentMonth) {
+
+        //        Standard working threshold: 5 days * 8 hours/day = 40 regular hours.
+//        Hours <= 40: Salary = totalHoursWorked * ratePerHour.
+//        Hours > 40: Regular Pay = 40 * ratePerHour;
+//        Overtime Pay = (totalHoursWorked - 40) * (ratePerHour * 1.5).
+//        Total Salary = Regular Pay + Overtime Pay.
+
+        double salary = 500;
+
+
+        // if current month is birthmonth, add bonus 5000 salary
+        if (currentMonth == this.birthDate.getMonth()) {
+            salary += 5000;
+
+        }
+
+        return salary;
+
+    }
+
+    public double ComputeSalary() {//Overloaded version without bday
+        return this.ComputeSalary(-1);
+    }
+
+
+
+
+
+
+
+
+//    Prints employee ID, name, birth date, and hire date.
     @Override
     public String toString() {
-        return String.format("a");
+        return String.format("Employee: [") +
+                "ID: " + this.empID +
+                "ID: " + this.empID +
+                "ID: " + this.empID +
+                "ID: " + this.empID +
+
+
+
+
+                ;
     }
 
     @Override
@@ -103,12 +138,14 @@ public class Employee implements Cloneable {
 
 public class HourlyEmployee extends Employee {
 
-    HourlyEmployee()
+    public HourlyEmployee() {
+
+    }
 
 
     @Override
-    public String toSTring() {
-        return String.format();
+    public String toString() {
+        return String.format("");
     }
 
 }
