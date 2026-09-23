@@ -46,7 +46,7 @@ public class Employee implements Cloneable {
     public void setHireDate(MyDate hireDate) {  this.hireDate = hireDate;    }
 
 
-    public double ComputeSalary(int currentMonth) {
+    public double computeSalary(int currentMonth) {
 
         //        Standard working threshold: 5 days * 8 hours/day = 40 regular hours.
 //        Hours <= 40: Salary = totalHoursWorked * ratePerHour.
@@ -67,13 +67,22 @@ public class Employee implements Cloneable {
 
     }
 
-    public double ComputeSalary() {//Overloaded version without bday
-        return this.ComputeSalary(-1);
+    public double computeSalary() {//Overloaded version without bday
+        return this.computeSalary(-1);
     }
 
 
 
+    public void displayEmployee() {
+        
+        System.out.print("Employee: [ID " + this.empID);
+        System.out.print(" | Name: " + this.empName);
+        System.out.print(" | BOD: " + this.birthDate);
+        System.out.print(" | Hired: " + this.hireDate);
+        System.out.println("]");
+               
 
+    }
 
 
 
@@ -81,16 +90,8 @@ public class Employee implements Cloneable {
 //    Prints employee ID, name, birth date, and hire date.
     @Override
     public String toString() {
-        return String.format("Employee: [") +
-                "ID: " + this.empID +
-                "ID: " + this.empID +
-                "ID: " + this.empID +
-                "ID: " + this.empID +
-
-
-
-
-                ;
+        return String.format("Employee: [ID:%s | Name: %s | BOD: %s | Hired: %s]", empID, empName, birthDate, hireDate);
+     
     }
 
     @Override
@@ -105,28 +106,30 @@ public class Employee implements Cloneable {
         // 4. Typecast the object after successful type check
         Employee other = (Employee) preTest;
 
-        // 5. Compare significant fields (use Objects.equals for objects to avoid NullPointerExceptions)
-        if  (   this.empID == other.empID &&
-                this.empName.getFullName() == other.empName.getFullName() &&
-                this.empID == other.empID &&
-                this.empID == other.empID
+        // 5. Compare other fields
+        if  ( this.empID == other.empID 
+                //can implement full comparison later
+            ) 
+            {return true;}
 
-        ) {
-
-        }
+        else return false;
     }
 
     // 6. ALWAYS override hashCode when you override equals
-//    @Override
-//    public int hashCode() {
-//        return super.hash(name, age);
-//    }
+   @Override
+   public int hashCode() {
+       return Objects.hash(empID, empName);
+   }
 
 
     @Override
     public Employee clone() {
         try {
-            return (Employee) super.clone();
+            Employee clonedEmployee = (Employee) super.clone();
+            clonedEmployee.empName = empName == null ? null : empName.clone();
+            clonedEmployee.birthDate = birthDate == null ? null : birthDate.clone();
+            clonedEmployee.hireDate = hireDate == null ? null : hireDate.clone();
+            return clonedEmployee;
         }
         catch (CloneNotSupportedException e) {
             throw new AssertionError(e);
@@ -136,16 +139,5 @@ public class Employee implements Cloneable {
 }
 
 
-public class HourlyEmployee extends Employee {
-
-    public HourlyEmployee() {
-
-    }
 
 
-    @Override
-    public String toString() {
-        return String.format("");
-    }
-
-}
