@@ -36,7 +36,7 @@ public class HourlyEmployee extends Employee {
     
 
     @Override 
-    public double ComputeSalary(int currentMonth) {
+    public double computeSalary(int currentMonth) {
         double salary = 0  ;
         double bonus = (this.getBirthDate().getMonth() == currentMonth) ? 5000 : 0;
 

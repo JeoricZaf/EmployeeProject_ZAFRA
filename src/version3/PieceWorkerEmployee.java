@@ -19,7 +19,7 @@ public class PieceWorkerEmployee extends Employee {
     }
     
     public PieceWorkerEmployee(int empID, Name empName) {
-        super(empID, new Name(empName), new MyDate(), new MyDate());
+        super(empID, empName, new MyDate(), new MyDate());
 
         this.totalPiecesFinished = 0;
         this.ratePerPiece = 0;
@@ -89,10 +89,9 @@ public class PieceWorkerEmployee extends Employee {
         PieceWorkerEmployee other = (PieceWorkerEmployee) preTest;
 
         // 5. Compare other fields
-        if  ( this.firstName == other.firstName &&
-             this.middleName == other.middleName &&
-             this.lastName == other.lastName &&
-             this.suffix == other.suffix 
+        if  ( super.equals(other) &&
+              this.totalPiecesFinished == other.totalPiecesFinished &&
+                this.ratePerPiece == other.ratePerPiece
                     //can implement full comparison later
             ) 
             {return true;}
@@ -102,18 +101,16 @@ public class PieceWorkerEmployee extends Employee {
 
    @Override
    public int hashCode() {
-       return Objects.hash(super.hashCode(), middleName, lastName, suffix);
+       return Objects.hash(super.hashCode(), totalPiecesFinished, ratePerPiece);
    }
 
    
    @Override
    public PieceWorkerEmployee clone() {
-       try {
+    
             return (PieceWorkerEmployee) super.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            throw new AssertionError(e);
-        }
+        
+        
    }
     
 }

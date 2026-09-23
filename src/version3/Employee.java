@@ -18,7 +18,6 @@ public class Employee implements Cloneable {
     private Name empName;
     private MyDate birthDate;
     private MyDate hireDate;
-    private double Salary;
 
     public Employee() {
         this.empID = 0;
