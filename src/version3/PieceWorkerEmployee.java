@@ -67,10 +67,10 @@ public class PieceWorkerEmployee extends Employee {
     public void displayPieceWorkerEmployee() {
         System.out.printf("%-28s [", "PieceWorkerEmployee");
         System.out.printf("%s",super.toString());
-        System.out.printf(", Pieces Finished: %d", this.totalPiecesFinished);
-        System.out.printf(", Rate/Piece: ₱%.2f", this.ratePerPiece);
-        System.out.printf(", Total Salary: ₱%.2f", this.computeSalary());
-        System.out.printf(", BirthMonth Salary: %.2f", this.computeSalary(getBirthDate().getMonth()) );
+        System.out.printf(" | Pieces Finished: %d", this.totalPiecesFinished);
+        System.out.printf(" | Rate/Piece: ₱%.2f", this.ratePerPiece);
+        System.out.printf(" | Total Salary: ₱%.2f", this.computeSalary());
+        System.out.printf(" | BirthMonth Salary: %.2f", this.computeSalary(getBirthDate().getMonth()) );
         System.out.println("]");
     }   
     
@@ -79,8 +79,8 @@ public class PieceWorkerEmployee extends Employee {
         public String toString() {
             return 
                     String.format("%s", super.toString() ) +
-                   ", Pieces Finished: " + this.totalPiecesFinished +
-                   ", Rate/Piece: ₱" + this.ratePerPiece;
+                   " | Pieces Finished: " + this.totalPiecesFinished +
+                   " | Rate/Piece: ₱" + this.ratePerPiece;
             
         }
     

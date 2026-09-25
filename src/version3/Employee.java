@@ -83,7 +83,7 @@ public class Employee implements Cloneable {
 
     public void displayEmployee() {
         
-        System.out.printf("Employee: [ID %-3s", empID);
+        System.out.printf("%-28s [ID: %-3s", "Employee", empID);
         System.out.print(" | Name: " + empName);
         System.out.print(" | DOB: " + birthDate);
         System.out.print(" | Hired: " + hireDate);

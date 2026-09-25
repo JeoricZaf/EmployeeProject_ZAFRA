@@ -48,16 +48,16 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     
     public void displayBasePlusCommissionEmployee() {
         System.out.printf("%-28s", "BasePlusCommissionEmployee");
-        System.out.printf(" [%s, Base Salary: %.2f, Total Salary %s, Birthday Salary %s]", 
+        System.out.printf(" [%s | Base Salary: %.2f | Total Salary %s | Birthday Salary %s]", 
                         super.toString(), baseSalary, computeSalary(), computeSalary(getBirthDate().getMonth()));
-        
+        System.out.println();
     }
     
     
     @Override
         public String toString() {
             return 
-                String.format("%s, Base Salary: %s",
+                String.format("%s | Base Salary: %s",
                                     super.toString(), baseSalary );
              
         }

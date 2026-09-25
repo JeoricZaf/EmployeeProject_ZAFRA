@@ -33,25 +33,23 @@ public class HourlyEmployee extends Employee {
     public void displayHourlyEmployee() {
         
         System.out.printf("%-28s","HourlyEmployee");
-        System.out.print(" [%s: " + super.toString());
-
+        System.out.printf(" [%s: ", super.toString());
         System.out.print(" | Hours: " + getTotalHoursWorked());
         System.out.print(" | Rate/Hour: ₱" +  getRatePerHour());
         System.out.print(" | Computed Salary: " + this.computeSalary() );
         System.out.print(" | BirthMonth Salary: " + this.computeSalary(getBirthDate().getMonth()) );
-        System.out.print(" ]");
-            
+        System.out.println(" ]");
     }
 
     @Override
     public String toString() {
         return
                 String.format(" [ID: %-3s", getEmpID()) +
-                ", Name: " +  getEmpName() +
-                ", DOB: " +   getBirthDate() +
-                ", Hired: " + getHireDate() +
-                ", Hours: " + getTotalHoursWorked() +
-                ", Rate: ₱" + getRatePerHour()
+                " | Name: " +  getEmpName() +
+                " | DOB: " +   getBirthDate() +
+                " | Hired: " + getHireDate() +
+                " | Hours: " + getTotalHoursWorked() +
+                " |  Rate: ₱" + getRatePerHour()
                
                 ;
     }

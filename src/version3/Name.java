@@ -14,6 +14,7 @@ public class Name implements Cloneable {
         this.firstName = "N/A";
         this.middleName = "N/A";
         this.lastName = "N/A";
+        this.suffix = "N/A";
 
     }
 
@@ -21,6 +22,7 @@ public class Name implements Cloneable {
         this.firstName = firstName;
         this.middleName = "";
         this.lastName = lastName;
+        this.suffix = "N/A";
     }
 
 
