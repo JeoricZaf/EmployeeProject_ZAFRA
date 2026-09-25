@@ -29,17 +29,20 @@ public class HourlyEmployee extends Employee {
     public double getRatePerHour() {return ratePerHour;}
     public void setRatePerHour(double ratePerHour) {this.ratePerHour = ratePerHour; }
 
-
+    
     public void displayHourlyEmployee() {
         
-        System.out.printf("%-28s","HourlyEmployee");
+        System.out.printf("%s","HourlyEmployee");
         System.out.printf(" [%s: ", super.toString());
         System.out.print(" | Hours: " + getTotalHoursWorked());
         System.out.print(" | Rate/Hour: ₱" +  getRatePerHour());
-        System.out.print(" | Computed Salary: " + this.computeSalary() );
-        System.out.print(" | BirthMonth Salary: " + this.computeSalary(getBirthDate().getMonth()) );
+        System.out.print(" | Computed Salary: ₱" + this.computeSalary() );
+        System.out.print(" | BirthMonth Salary: ₱" + this.computeSalary(getBirthDate().getMonth()) );
         System.out.println(" ]");
     }
+
+    @Override 
+    public void display(){displayHourlyEmployee();System.out.println();}
 
     @Override
     public String toString() {
@@ -73,8 +76,16 @@ public class HourlyEmployee extends Employee {
 
     }
 
+    @Override
+    public boolean equals(Object preTest) {
+        if (this == preTest) return true;
+        if (preTest == null || getClass() != preTest.getClass()) return false;
 
-    
+        HourlyEmployee other = (HourlyEmployee) preTest;
+        return super.equals(other)
+                && Float.compare(totalHoursWorked, other.totalHoursWorked) == 0
+                && Double.compare(ratePerHour, other.ratePerHour) == 0;
+    }
 
     @Override
     public int hashCode() {

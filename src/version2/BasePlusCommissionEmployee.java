@@ -16,8 +16,8 @@ public class BasePlusCommissionEmployee {
     private MyDate hireDate;
 
     private double totalSale;
-    private double commissionRate;
     private double baseSalary;
+    private double commissionRate;
     
     BasePlusCommissionEmployee() {
         this.empID = 0;

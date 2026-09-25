@@ -87,15 +87,17 @@ public class CommissionEmployee extends Employee {
     
     public void displayCommissionEmployee() { //will have the complete salaries
         
-        System.out.printf("%-28s [%s | Total Sale: %.2f | Total Salary: %.2f | Birthday Salary: %.2f]",
+        System.out.printf("%s [%s | Total Sale: %.2f | Total Salary: ₱%.2f | Birthday Salary: ₱%.2f]",
 "CommissionEmployee", super.toString(), totalSale, computeSalary(), computeSalary(getBirthDate().getMonth()));
         System.out.println();
     }
     
+    @Override 
+    public void display(){displayCommissionEmployee();System.out.println();}
     
     @Override
         public String toString() {//to string wont have salary so that subclasses can append to it. salary is always last
-            return String.format( "%s | %s", super.toString(), totalSale   ); 
+            return String.format( "%s | Total Sale: %s", super.toString(), totalSale   ); 
               
         }
     
