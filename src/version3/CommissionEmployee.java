@@ -4,6 +4,8 @@
  */
 package version3;
 
+import java.util.Objects;
+
 /**
  *
  * @author User
@@ -97,6 +99,15 @@ public class CommissionEmployee extends Employee {
               
         }
     
-    
+     @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), totalSale);
+    }
+
+    @Override
+    public CommissionEmployee clone() {
+        return (CommissionEmployee) super.clone();
+    }
+
 
 }

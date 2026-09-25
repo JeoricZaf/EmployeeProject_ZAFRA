@@ -22,10 +22,9 @@ public class MyDate implements Cloneable {
 
     public MyDate(int day, int month, int year) {
         //
-        if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year) ) {
-             System.out.println("Invalid date Inputted");
-             return;
-        } 
+        if (!isValidDate(day, month, year)) {
+            throw new IllegalArgumentException("Invalid date inputted");
+        }
         this.day = day;
         this.month = month;
         this.year = year;
@@ -34,10 +33,9 @@ public class MyDate implements Cloneable {
     }
 
     public void setFullDate(int day, int month, int year) {
-        if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year) ) {
-             System.out.println("Invalid date Inputted");
-             return;
-        } 
+        if (!isValidDate(day, month, year)) {
+            throw new IllegalArgumentException("Invalid date inputted");
+        }
 
         this.day = day;
         this.month = month;
@@ -51,7 +49,7 @@ public class MyDate implements Cloneable {
     }
     public void setDay(int day) {
         //validate day input
-        if (isValidDay(day)) {
+        if (isValidDate(day, this.month, this.year)) {
             this.day = day;
         }
         else System.out.println("Invalid day inputted");
@@ -62,8 +60,9 @@ public class MyDate implements Cloneable {
         return month;
     }
     public void setMonth(int month) {
-        if (isValidMonth(month)) {
+        if (isValidDate(this.day, month, this.year)) {
             this.month = month;
+            this.monthName = Month.of(month).getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
         }
         else System.out.println("Invalid Month Inputted");
 
@@ -73,7 +72,7 @@ public class MyDate implements Cloneable {
         return year;
     }
     public void setYear(int year) {
-        if (isValidYear(year)) {
+        if (isValidDate(this.day, this.month, year)) {
             this.year = year;
         }
         else System.out.println("Invalid Year Inputted");
@@ -86,13 +85,20 @@ public class MyDate implements Cloneable {
 
 
     private boolean isValidDay(int day) {
-        return (1 <= day && day <= 31) ? true:false;
+        return 1 <= day && day <= 31;
     }
     private boolean isValidMonth(int month) {
-        return (1 <= month && month <= 12) ? true:false;
+        return 1 <= month && month <= 12;
     }
     private boolean isValidYear(int year) {
-        return (1 <= year) ? true:false;
+        return year >= 1;
+    }
+
+    private boolean isValidDate(int day, int month, int year) {
+        if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
+            return false;
+        }
+        return day <= Month.of(month).length(java.time.Year.isLeap(year));
     }
 
 

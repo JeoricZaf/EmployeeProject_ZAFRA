@@ -62,7 +62,7 @@ public class Name implements Cloneable {
     }
 
     public String getFullName() {
-        return this.firstName + middleName + lastName + suffix ;
+        return String.format("%s %s %s %s", firstName, middleName, lastName, suffix );
     }
     public void setFullName(String firstName, String middleName, String lastname, String suffix) {
          this.firstName = firstName;
@@ -82,7 +82,7 @@ public class Name implements Cloneable {
     }
     }
 
-    private boolean theres_no(String private_var) {return (private_var == "");}
+    private boolean theres_no(String private_var) {return private_var == null || private_var.isEmpty();}
 
 
 
@@ -108,10 +108,10 @@ public class Name implements Cloneable {
         Name other = (Name) preTest;
 
         // 5. Compare other fields
-        if  ( this.firstName == other.firstName &&
-             this.middleName == other.middleName &&
-             this.lastName == other.lastName &&
-             this.suffix == other.suffix 
+           if  ( Objects.equals(this.firstName, other.firstName) &&
+               Objects.equals(this.middleName, other.middleName) &&
+               Objects.equals(this.lastName, other.lastName) &&
+               Objects.equals(this.suffix, other.suffix)
                     //can implement full comparison later
             ) 
             {return true;}

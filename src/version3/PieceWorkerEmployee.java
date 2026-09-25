@@ -68,8 +68,8 @@ public class PieceWorkerEmployee extends Employee {
         System.out.printf("%-28s [", "PieceWorkerEmployee");
         System.out.printf("%s",super.toString());
         System.out.printf(" | Pieces Finished: %d", this.totalPiecesFinished);
-        System.out.printf(" | Rate/Piece: ₱%.2f", this.ratePerPiece);
-        System.out.printf(" | Total Salary: ₱%.2f", this.computeSalary());
+        System.out.printf(" | Rate/Piece: \u20B1%.2f", this.ratePerPiece);
+        System.out.printf(" | Total Salary: \u20B1%.2f", this.computeSalary());
         System.out.printf(" | BirthMonth Salary: %.2f", this.computeSalary(getBirthDate().getMonth()) );
         System.out.println("]");
     }   
@@ -80,7 +80,7 @@ public class PieceWorkerEmployee extends Employee {
             return 
                     String.format("%s", super.toString() ) +
                    " | Pieces Finished: " + this.totalPiecesFinished +
-                   " | Rate/Piece: ₱" + this.ratePerPiece;
+                   " | Rate/Piece: \u20B1" + this.ratePerPiece;
             
         }
     

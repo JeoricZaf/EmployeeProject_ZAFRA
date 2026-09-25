@@ -115,18 +115,16 @@ public class Employee implements Cloneable {
         Employee other = (Employee) preTest;
 
         // 5. Compare other fields
-        if  ( this.empID == other.empID 
-                //can implement full comparison later
-            ) 
-            {return true;}
-
-        else return false;
+        return this.empID == other.empID &&
+            Objects.equals(this.empName, other.empName) &&
+            Objects.equals(this.birthDate, other.birthDate) &&
+            Objects.equals(this.hireDate, other.hireDate);
     }
 
     // 6. ALWAYS override hashCode when you override equals
    @Override
    public int hashCode() {
-       return Objects.hash(empID, empName);
+    return Objects.hash(empID, empName, birthDate, hireDate);
    }
 
 
@@ -134,9 +132,9 @@ public class Employee implements Cloneable {
     public Employee clone() {
         try {
             Employee clonedEmployee = (Employee) super.clone();
-            clonedEmployee.empName = empName == null ? null : empName.clone();
-            clonedEmployee.birthDate = birthDate == null ? null : birthDate.clone();
-            clonedEmployee.hireDate = hireDate == null ? null : hireDate.clone();
+            clonedEmployee.empName = (empName == null) ? null : empName.clone();
+            clonedEmployee.birthDate = (birthDate == null) ? null : birthDate.clone();
+            clonedEmployee.hireDate = (hireDate == null) ? null : hireDate.clone();
             return clonedEmployee;
         }
         catch (CloneNotSupportedException e) {
