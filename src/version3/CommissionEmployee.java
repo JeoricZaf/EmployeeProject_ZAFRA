@@ -11,19 +11,20 @@ package version3;
 public class CommissionEmployee extends Employee {
 
     private double totalSale;
+    private double CommissionRate;
 
     public CommissionEmployee() {
         super();
         this.totalSale = 0;
     }
 
-    public CommissionEmployee(int empID, String empName) {
+    public CommissionEmployee(int empID, Name empName) {
         super(empID, empName);
         this.totalSale = 0;
 
     }
 
-    public CommissionEmployee(int empID, String empName, double totalSale) {
+    public CommissionEmployee(int empID, Name empName, double totalSale) {
         super(empID, empName);
         this.totalSale = totalSale;
     }
@@ -73,9 +74,9 @@ public class CommissionEmployee extends Employee {
     public void displayCommissionEmployee() {
         
         System.out.printf("%-45s","Employee Type: CommissionEmployee ");
-        System.out.print("| ID: "+ super.getID());
-        System.out.print("| Name: "+ super.getName());
-        System.out.println("| Total Sale: "+ this.totalSale);
+        System.out.print("| ID: "+ getEmpID());
+        System.out.print("| Name: "+ getEmpName());
+        System.out.println("| Total Sale: "+ totalSale);
     }
     
     
@@ -89,6 +90,6 @@ public class CommissionEmployee extends Employee {
             
         }
     
-
+    
 
 }

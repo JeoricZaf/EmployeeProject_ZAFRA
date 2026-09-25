@@ -1,0 +1,4 @@
+for this version,
+try to create getEmptype
+and override toString and getEmptype
+to reduce redundancy
