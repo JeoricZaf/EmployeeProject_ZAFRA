@@ -3,8 +3,9 @@ package version3;
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.Objects;
 
-public class MyDate {
+public class MyDate implements Cloneable {
     private int day;
     private int month;
     private int year;
@@ -12,7 +13,7 @@ public class MyDate {
     private String monthName;
 
     public MyDate() {
-        this.day = 1; //default date if none given
+        this.day = 1;
         this.month = 1;
         this.year = 2026;
 
@@ -20,11 +21,11 @@ public class MyDate {
     }
 
     public MyDate(int day, int month, int year) {
+        //
         if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year) ) {
              System.out.println("Invalid date Inputted");
              return;
         } 
-
         this.day = day;
         this.month = month;
         this.year = year;
@@ -97,14 +98,59 @@ public class MyDate {
 
     public void display() {
 
-        System.out.printf("Date: %02d %s %d", this.day, this.monthName, this.year);
+        System.out.printf("%02d %s %d\n", day, monthName , year);
     }
+
 
 
 
     @Override
     public String toString() {
-        return String.format("%02d %s %d", this.day, this.monthName, this.year);
+        return String.format("%02d %s %d", day, monthName, year);
     }
 
+
+
+//for version 3 override equals, hashCode, and clone.
+
+
+    @Override
+    public boolean equals(Object preTest) {
+        if (this == preTest) return true;
+
+        // Null & Type check: Guard against null and ensure exact class match
+        else if (preTest == null || getClass() != preTest.getClass()) {
+            return false;
+        }
+
+        // 4. Typecast the object after successful type check
+        MyDate other = (MyDate) preTest;
+
+        // 5. Compare other fields
+        if  ( this.day == other.day &&
+                this.month == other.month &&
+                this.year == other.year
+            ) 
+            {return true;}
+
+        else return false;
+    }
+
+    // 6. ALWAYS override hashCode when you override equals
+   @Override
+   public int hashCode() {
+       return Objects.hash(day, month, year);
+   }
+
+
+    @Override
+    public MyDate clone() {
+        try {
+            return (MyDate) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
+
+    }
 }

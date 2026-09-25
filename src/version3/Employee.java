@@ -1,6 +1,18 @@
 package version3;
 
-public class Employee {
+import java.util.Objects;
+
+/*
+Now implements inheritanace, super() constructor chaining,
+
+all 4 employee subclasses should inherit properties from employee superclass
+employee superclass should include name and mydate classes
+
+format all monetary values to %.2f
+
+ */
+
+public class Employee implements Cloneable {
 
     private int empID;
     private Name empName;
@@ -12,116 +24,127 @@ public class Employee {
         this.empName = new Name();
         this.birthDate = new MyDate(); //by default both dates will be jan 1 2026
         this.hireDate = new MyDate();
-
     }
 
-    public Employee(int empID, String fName, String lName, int day, int month, int year) {
+    public Employee(int empID, Name empName) {
         this.empID = empID;
-        this.empName = new Name(fName, lName); ;
-        this.hireDate = new MyDate(day, month, year);
-
-
+        this.empName = empName;
+        this.birthDate = new MyDate();
+        this.hireDate = new MyDate();
     }
-    
-      public Employee(int empID, String fName, String lName, String mName, int bday, int bmonth, int byear, int Hireday, int Hiremonth, int Hireyear) {
+
+    public Employee(int empID, Name empName, MyDate birthDate, MyDate hireDate) {
         this.empID = empID;
-        this.empName = new Name(fName, mName, lName );
-        this.birthDate = new MyDate(bday, bmonth, byear);
-        this.hireDate = new MyDate(Hireday, Hiremonth, Hireyear);
-        
+        this.empName = empName;
+        this.birthDate = birthDate;
+        this.hireDate = hireDate;
     }
 
     public int getEmpID() {return empID;}
-    public void setEmpID(int empID) {this.empID = empID;}
+    public void setEmpID(int empID) { this.empID = empID;}
 
-    public Name getEmpName() {return empName;}
-    public void setEmpName(String firstName, String middleName, String lastName) {
-        this.empName.setFullName(firstName, middleName, lastName);
-    }
+    public Name getEmpName() {return empName;  }
+    public void setEmpName(Name empName) {this.empName = empName;} //assumes a complete class? its vague, can intake a partial name
 
-    public MyDate getBirthDate() {return this.birthDate;}
-    public void setBirthDate(int day, int month, int year) {
-        this.birthDate.setFullDate(day, month, year);
-    }
+    public MyDate getBirthDate() { return birthDate;}
+    public void setBirthDate(MyDate birthDate) {this.birthDate = birthDate;}
 
-    public MyDate getHireDate() {return this.hireDate;}
-    public void setHireDate(int day, int month, int year) {
-        this.hireDate.setFullDate(day, month, year);
-    }
+    public MyDate getHireDate() { return hireDate;    }
+    public void setHireDate(MyDate hireDate) {  this.hireDate = hireDate;    }
 
-
-    public double computeSalary() {
-        double salary = 0;
-        
-        //idk whats the base pay here
-
-        return salary;
-        
-    }
 
     public double computeSalary(int currentMonth) {
-        //overloaded salary func
 
-        double salary = this.computeSalary();
+        //        Standard working threshold: 5 days * 8 hours/day = 40 regular hours.
+//        Hours <= 40: Salary = totalHoursWorked * ratePerHour.
+//        Hours > 40: Regular Pay = 40 * ratePerHour;
+//        Overtime Pay = (totalHoursWorked - 40) * (ratePerHour * 1.5).
+//        Total Salary = Regular Pay + Overtime Pay.
 
-        //if current month is birthmonth, add bonus 5000 salary
+        double salary = 500;
+
+
+        // if current month is birthmonth, add bonus 5000 salary
         if (currentMonth == this.birthDate.getMonth()) {
             salary += 5000;
+
         }
 
         return salary;
+
+    }
+
+    public double computeSalary() {//Overloaded version is the one without bday for some reason
+        return this.computeSalary(-1);
     }
 
 
-    public void displayEmployee(){
+
+    public void displayEmployee() {
         
-        System.out.printf("ID: %-3s",this.empID);
-        System.out.print(" | Name: " + this.empName);
-        System.out.print(" | DOB: " + this.birthDate); 
-        System.out.print(" | Hired: " + this.hireDate); 
-                
-        
+        System.out.printf("Employee: [ID %-3s", empID);
+        System.out.print(" | Name: " + empName);
+        System.out.print(" | DOB: " + birthDate);
+        System.out.print(" | Hired: " + hireDate);
+        System.out.println("]");
+               
+
     }
-    
+
+
+
+
+//    Prints employee ID, name, birth date, and hire date.
     @Override
     public String toString() {
-        return   
-                String.format("%-28s", "Employee") +
-                String.format(" [ID: %-3s", this.empID) +
-                ", Name: " +  this.empName +
-                ", DOB: " +   this.birthDate +
-                ", Hired: " + this.hireDate +
-                " ]"
-                ;
+        return String.format("Employee: [ID:%s | Name: %-3s | DOB: %s | Hired: %s]", empID, empName, birthDate, hireDate);
+     
     }
 
-    @Override 
-    public equals(Object obj) {
+    @Override
+    public boolean equals(Object preTest) {
+        if (this == preTest) return true;
 
+        // Null & Type check: Guard against null and ensure exact class match
+        else if (preTest == null || getClass() != preTest.getClass()) {
+            return false;
+        }
+
+        // 4. Typecast the object after successful type check
+        Employee other = (Employee) preTest;
+
+        // 5. Compare other fields
+        if  ( this.empID == other.empID 
+                //can implement full comparison later
+            ) 
+            {return true;}
+
+        else return false;
     }
 
-    @Override 
-    public hashCode() {
-        
+    // 6. ALWAYS override hashCode when you override equals
+   @Override
+   public int hashCode() {
+       return Objects.hash(empID, empName);
+   }
+
+
+    @Override
+    public Employee clone() {
+        try {
+            Employee clonedEmployee = (Employee) super.clone();
+            clonedEmployee.empName = empName == null ? null : empName.clone();
+            clonedEmployee.birthDate = birthDate == null ? null : birthDate.clone();
+            clonedEmployee.hireDate = hireDate == null ? null : hireDate.clone();
+            return clonedEmployee;
+        }
+        catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
+
     }
-    
-    @Override 
-    public clone() {
-        
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
