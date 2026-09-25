@@ -98,7 +98,7 @@ public class MyDate implements Cloneable {
 
     public void display() {
 
-        System.out.printf("%02d %s %d\n", day, monthName , year);
+        System.out.printf("Date: %02d %s %d\n", day, monthName , year);
     }
 
 
@@ -106,7 +106,7 @@ public class MyDate implements Cloneable {
 
     @Override
     public String toString() {
-        return String.format("%02d %s %d", day, monthName, year);
+        return String.format("Date: %02d %s %d", day, monthName, year);
     }
 
 

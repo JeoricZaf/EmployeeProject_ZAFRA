@@ -62,16 +62,16 @@ public class Employee implements Cloneable {
 //        Overtime Pay = (totalHoursWorked - 40) * (ratePerHour * 1.5).
 //        Total Salary = Regular Pay + Overtime Pay.
 
-        double salary = 500;
-
+        double salary = 0;
+        double bonus = 0;
 
         // if current month is birthmonth, add bonus 5000 salary
         if (currentMonth == this.birthDate.getMonth()) {
-            salary += 5000;
+            bonus += 5000;
 
         }
 
-        return salary;
+        return salary + bonus;
 
     }
 
@@ -98,7 +98,7 @@ public class Employee implements Cloneable {
 //    Prints employee ID, name, birth date, and hire date.
     @Override
     public String toString() {
-        return String.format("ID:%-3s | Name: %s | DOB: %s | Hired: %s]", empID, empName, birthDate, hireDate);
+        return String.format("ID: %-3s | Name: %s | DOB: %s | Hired: %s", empID, empName, birthDate, hireDate);
      
     }
 

@@ -39,17 +39,17 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     }
     
     @Override 
-    public double computeSalary() {
+    public double computeSalary(int currentMonth) {
         
-        double Commission = super.computeSalary();
+        double Commission = super.computeSalary(currentMonth);
         return Commission + baseSalary;
 
     }
     
     public void displayBasePlusCommissionEmployee() {
-        
-        displayCommissionEmployee();
-        System.out.print("| Base Salary: "+ baseSalary);
+        System.out.printf("%-28s", "BasePlusCommissionEmployee");
+        System.out.printf(" [%s, Base Salary: %.2f, Total Salary %s, Birthday Salary %s]", 
+                        super.toString(), baseSalary, computeSalary(), computeSalary(getBirthDate().getMonth()));
         
     }
     
@@ -57,8 +57,8 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     @Override
         public String toString() {
             return 
-                String.format("%-28s  [ID: %-3s, Name: %s,  Total Sales: %s, Commission Rate: %s, Base Salary: %s, Total Base Plus Commission: %s",
-            "BasePlusCommissionEmployee",getEmpID(), getEmpName(), getTotalSale(), getCommissionRate(), baseSalary,         computeSalary() );
+                String.format("%s, Base Salary: %s",
+                                    super.toString(), baseSalary );
              
         }
     

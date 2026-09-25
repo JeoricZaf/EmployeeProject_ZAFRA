@@ -46,13 +46,18 @@ public class CommissionEmployee extends Employee {
 
     
     @Override
-    public double computeSalary() {
+    public double computeSalary(int currentMonth) {
 //        Below PHP 50,000: 5% commission (0.05 * totalSale)
 //        PHP 50,000 to below PHP 100,000: 10% commission (0.10 * totalSale)
 //        PHP 100,000 to below PHP 500,000: 15% commission (0.15 * totalSale)
 //        PHP 500,000 and above: 20% commission (0.20 * totalSale)
 
         double Salary = 0;
+        double Bonus = 0;
+
+        if (currentMonth == getBirthDate().getMonth()) {
+            Bonus += 5000;
+        }
         
         if (this.totalSale < 50_000) {
             //5% commission
@@ -74,34 +79,21 @@ public class CommissionEmployee extends Employee {
         else {System.out.println("Something went wrong"); return -1;}
             
         Salary = this.CommissionRate * this.totalSale;
-        return Salary;
+        return Salary + Bonus;
         
-    }
-
-    public double computeSalary(int currentMonth) {
-
-        double new_salary = this.computeSalary();
-
-        //if current month is birthmonth, add bonus 5000 salary
-        if (currentMonth == getBirthDate().getMonth()) {
-            new_salary += 5000;
-        }
-
-    return new_salary;
     }
     
-    public void displayCommissionEmployee() {
+    public void displayCommissionEmployee() { //will have the complete salaries
         
-        System.out.printf("ID: %d | Name: %s | BOD %s | Total Sale: %.2f",
-                        getEmpID(), getEmpName(), getBirthDate(), totalSale);
+        System.out.printf("%-28s [%s, Total Sale: %.2f, Total Salary: %.2f, Birthday Salary: %.2f]",
+"CommissionEmployee", super.toString(), totalSale, computeSalary(), computeSalary(getBirthDate().getMonth()));
     
     }
     
     
     @Override
-        public String toString() {
-            return String.format( "%s | ID: %d | Name: %s | Total Sale: %d | Commission Pay: %d ",
-    "Employee Type: CommissionEmployee ", getEmpID(), getEmpName(), totalSale, computeSalary()   ); 
+        public String toString() {//to string wont have salary so that subclasses can append to it. salary is always last
+            return String.format( "%s, %s", super.toString(), totalSale   ); 
               
         }
     

@@ -48,7 +48,7 @@ public class PieceWorkerEmployee extends Employee {
     @Override
     public double computeSalary(int currentMonth) {
        
-        double BasePay = (currentMonth == this.getBirthDate().getMonth()) ? 5000 : 0;
+        double BdayBonus = (currentMonth == this.getBirthDate().getMonth()) ? 5000 : 0;
 
 
 //        Base pay: totalPiecesFinished * ratePerPiece.
@@ -56,23 +56,31 @@ public class PieceWorkerEmployee extends Employee {
     //Bonus pieces factor: floor(totalPiecesFinished / 100) * (10 * ratePerPiece).
     //Total Salary = Base Pay + Bonus Pay. 
         
-        BasePay += this.totalPiecesFinished * this.ratePerPiece;
+        double BasePay = this.totalPiecesFinished * this.ratePerPiece;
         
         double BonusPay = Math.floor(this.totalPiecesFinished / 100) * (this.ratePerPiece * 10);
         
-        return BasePay + BonusPay;
+        return BasePay + BonusPay + BdayBonus;
 
     }
     
     public void displayPieceWorkerEmployee() {
-        //merge later
-    }
+        System.out.printf("%-28s [", "PieceWorkerEmployee");
+        System.out.printf("%s",super.toString());
+        System.out.printf(", Pieces Finished: %d", this.totalPiecesFinished);
+        System.out.printf(", Rate/Piece: ₱%.2f", this.ratePerPiece);
+        System.out.printf(", Total Salary: ₱%.2f", this.computeSalary());
+        System.out.printf(", BirthMonth Salary: %.2f", this.computeSalary(getBirthDate().getMonth()) );
+        System.out.println("]");
+    }   
     
     
     @Override
         public String toString() {
-            return " ";
-            // merge later
+            return 
+                    String.format("%s", super.toString() ) +
+                   ", Pieces Finished: " + this.totalPiecesFinished +
+                   ", Rate/Piece: ₱" + this.ratePerPiece;
             
         }
     

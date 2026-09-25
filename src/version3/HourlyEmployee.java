@@ -32,18 +32,29 @@ public class HourlyEmployee extends Employee {
 
     public void displayHourlyEmployee() {
         
-        System.out.printf("ID: %-3s",this.empID);
-        System.out.print(" | Name: " + this.empName);
-        System.out.print(" | DOB: " + this.birthDate); 
-        System.out.print(" | Hired: " + this.hireDate); 
-        System.out.print(" | Hours: " + this.totalHoursWorked);
-        System.out.print(" | Rate/Hour: ₱" +  this.ratePerHour);
+        System.out.printf("%-28s","HourlyEmployee");
+        System.out.print(" [%s: " + super.toString());
+
+        System.out.print(" | Hours: " + getTotalHoursWorked());
+        System.out.print(" | Rate/Hour: ₱" +  getRatePerHour());
         System.out.print(" | Computed Salary: " + this.computeSalary() );
-        System.out.println(" | BirthMonth Salary: " + this.computeSalary(this.birthDate.getMonth()) );
+        System.out.print(" | BirthMonth Salary: " + this.computeSalary(getBirthDate().getMonth()) );
+        System.out.print(" ]");
             
     }
 
-    
+    @Override
+    public String toString() {
+        return
+                String.format(" [ID: %-3s", getEmpID()) +
+                ", Name: " +  getEmpName() +
+                ", DOB: " +   getBirthDate() +
+                ", Hired: " + getHireDate() +
+                ", Hours: " + getTotalHoursWorked() +
+                ", Rate: ₱" + getRatePerHour()
+               
+                ;
+    }
 
     @Override 
     public double computeSalary(int currentMonth) {
@@ -65,10 +76,7 @@ public class HourlyEmployee extends Employee {
     }
 
 
-    @Override
-    public String toString() {
-        return String.format("HourlyEmployee: %s, Hours: %.2f, Rate/hour: %.2f", displayEmployee();, totalHoursWorked, ratePerHour);
-    }
+    
 
     @Override
     public int hashCode() {
