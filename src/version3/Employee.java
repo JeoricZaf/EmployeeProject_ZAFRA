@@ -98,7 +98,7 @@ public class Employee implements Cloneable {
 //    Prints employee ID, name, birth date, and hire date.
     @Override
     public String toString() {
-        return String.format("Employee: [ID:%s | Name: %-3s | DOB: %s | Hired: %s]", empID, empName, birthDate, hireDate);
+        return String.format("ID:%-3s | Name: %s | DOB: %s | Hired: %s]", empID, empName, birthDate, hireDate);
      
     }
 

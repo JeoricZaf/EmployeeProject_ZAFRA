@@ -15,11 +15,13 @@ public class CommissionEmployee extends Employee {
 
     public CommissionEmployee() {
         super();
+
         this.totalSale = 0;
     }
 
     public CommissionEmployee(int empID, Name empName) {
         super(empID, empName);
+
         this.totalSale = 0;
 
     }
@@ -37,6 +39,11 @@ public class CommissionEmployee extends Employee {
     public void setTotalSale(double totalSale) {
         this.totalSale = totalSale;
     }
+
+    public double getCommissionRate() {
+        return CommissionRate;
+    }
+
     
     @Override
     public double computeSalary() {
@@ -45,49 +52,57 @@ public class CommissionEmployee extends Employee {
 //        PHP 100,000 to below PHP 500,000: 15% commission (0.15 * totalSale)
 //        PHP 500,000 and above: 20% commission (0.20 * totalSale)
 
-        
-        double Commission = 0;
+        double Salary = 0;
         
         if (this.totalSale < 50_000) {
             //5% commission
-            Commission = 0.05 * this.totalSale;
+            this.CommissionRate = 0.05;
         }
         else if (this.totalSale >= 50_000 && this.totalSale < 100_000) {
             //10% commission
-            Commission = 0.10 * this.totalSale;
+            this.CommissionRate = 0.10;
         }
         else if (this.totalSale >= 100_000 && this.totalSale < 500_000) {
             //15% commission
-            Commission = 0.15 * this.totalSale;
+            this.CommissionRate = 0.15;
         }
         else if (this.totalSale >= 500_000) {
             //20% commission
-            Commission = 0.20 * this.totalSale;
-        }
-        else {System.out.println("Something went wrong");}
+            this.CommissionRate = 0.20;
             
-         
-        return Commission;
+        }
+        else {System.out.println("Something went wrong"); return -1;}
+            
+        Salary = this.CommissionRate * this.totalSale;
+        return Salary;
         
+    }
+
+    public double computeSalary(int currentMonth) {
+
+        double new_salary = this.computeSalary();
+
+        //if current month is birthmonth, add bonus 5000 salary
+        if (currentMonth == getBirthDate().getMonth()) {
+            new_salary += 5000;
+        }
+
+    return new_salary;
     }
     
     public void displayCommissionEmployee() {
         
-        System.out.printf("%-45s","Employee Type: CommissionEmployee ");
-        System.out.print("| ID: "+ getEmpID());
-        System.out.print("| Name: "+ getEmpName());
-        System.out.println("| Total Sale: "+ totalSale);
+        System.out.printf("ID: %d | Name: %s | BOD %s | Total Sale: %.2f",
+                        getEmpID(), getEmpName(), getBirthDate(), totalSale);
+    
     }
     
     
     @Override
         public String toString() {
-            return "Employee Type: CommissionEmployee " + 
-                   " | ID: " + super.getID() +
-                   " | Name: " + super.getName() +
-                   " | Total Sale: " + this.totalSale +
-                   " | Commission Pay: " + this.computeSalary();
-            
+            return String.format( "%s | ID: %d | Name: %s | Total Sale: %d | Commission Pay: %d ",
+    "Employee Type: CommissionEmployee ", getEmpID(), getEmpName(), totalSale, computeSalary()   ); 
+              
         }
     
     

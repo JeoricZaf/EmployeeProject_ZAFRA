@@ -18,19 +18,19 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
 
     BasePlusCommissionEmployee() {
         super(); //note parent is CommissionEmployee, not Employee
+        
         this.baseSalary = 0;
     }
     BasePlusCommissionEmployee(int empID, Name empName) {
         super(empID, empName);
+
         this.baseSalary = 0;
     }
     BasePlusCommissionEmployee(int empID, Name empName, double totalSale, double baseSalary) {
         super(empID, empName, totalSale);
+
         this.baseSalary = baseSalary;
     }
-
-
-
 
 
     public double getBaseSalary() {return baseSalary;}
@@ -57,15 +57,9 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     @Override
         public String toString() {
             return 
-                String.format("%-28s", "BasePlusCommissionEmployee") +
-                String.format(" [ID: %-3s", this.empID) +
-                ", Name: " + this.empName +
-                ", Total Sales: " + this.totalSale +
-                ", Commission Rate: " + this.commissionRate +
-                ", Base Salary: " + this.baseSalary +
-                ", Total Base Plus Commission: " + this.computeSalary() +
-                " ]";
-            
+                String.format("%-28s  [ID: %-3s, Name: %s,  Total Sales: %s, Commission Rate: %s, Base Salary: %s, Total Base Plus Commission: %s",
+            "BasePlusCommissionEmployee",getEmpID(), getEmpName(), getTotalSale(), getCommissionRate(), baseSalary,         computeSalary() );
+             
         }
     
 }
