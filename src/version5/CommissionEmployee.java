@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package version4;
+package version5;
 
 import java.util.Objects;
 
 /**
  *
- * @author User
  */
 public class CommissionEmployee extends Employee {
 
@@ -33,20 +28,12 @@ public class CommissionEmployee extends Employee {
         this.totalSale = totalSale;
     }
 
+    public double getTotalSale() {return totalSale;}
 
-    public double getTotalSale() {
-        return totalSale;
-    }
+    public void setTotalSale(double totalSale) {this.totalSale = totalSale;}
 
-    public void setTotalSale(double totalSale) {
-        this.totalSale = totalSale;
-    }
+    public double getCommissionRate() {return CommissionRate;}
 
-    public double getCommissionRate() {
-        return CommissionRate;
-    }
-
-    
     public double computeSalary(int currentMonth) {
 //        Below PHP 50,000: 5% commission (0.05 * totalSale)
 //        PHP 50,000 to below PHP 100,000: 10% commission (0.10 * totalSale)
@@ -59,7 +46,7 @@ public class CommissionEmployee extends Employee {
         if (currentMonth == getBirthDate().getMonth()) {
             Bonus += 5000;
         }
-        
+
         if (this.totalSale < 50_000) {
             //5% commission
             this.CommissionRate = 0.05;
@@ -75,42 +62,45 @@ public class CommissionEmployee extends Employee {
         else if (this.totalSale >= 500_000) {
             //20% commission
             this.CommissionRate = 0.20;
-            
+
         }
         else {System.out.println("Something went wrong"); return -1;}
-            
+
         Salary = this.CommissionRate * this.totalSale;
         return Salary + Bonus;
-        
+
     }
 
-    public double computeSalary() {
-        return computeSalary(-1);
-    }
-    
+    public double computeSalary() {return computeSalary(-1);}
+
     public void displayCommissionEmployee() { //will have the complete salaries
         System.out.printf("[Commission] ID: %d | Name: %s | Salary: ₱%.2f%n",
             getEmpID(), getEmpName(), computeSalary());
     }
-    
-    @Override 
+
+    @Override
     public void display(){displayCommissionEmployee();System.out.println();}
-    
+
     @Override
         public String toString() {//to string wont have salary so that subclasses can append to it. salary is always last
-            return String.format( "%s | Total Sale: %s", super.toString(), totalSale   ); 
-              
+            return String.format("CommissionEmployee [ID: %d, Name: %s, Total Salary: ₱%,.2f]",
+                    getEmpID(), getEmpName(), computeSalary());
+
         }
-    
+
      @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), totalSale);
+    public boolean equals(Object preTest) {
+        if (this == preTest) return true;
+        if (preTest == null || getClass() != preTest.getClass()) return false;
+
+        CommissionEmployee other = (CommissionEmployee) preTest;
+        return super.equals(other) && Double.compare(totalSale, other.totalSale) == 0;
     }
 
     @Override
-    public CommissionEmployee clone() {
-        return (CommissionEmployee) super.clone();
-    }
+    public int hashCode() {return Objects.hash(super.hashCode(), totalSale);}
 
+    @Override
+    public CommissionEmployee clone() {return (CommissionEmployee) super.clone();}
 
 }

@@ -1,10 +1,10 @@
-package version4;
+package version6;
 
 import java.util.Objects;
 
 public class HourlyEmployee extends Employee {
 
-    private float totalHoursWorked; 
+    private float totalHoursWorked;
     private double ratePerHour;
 
     public HourlyEmployee() {
@@ -16,62 +16,43 @@ public class HourlyEmployee extends Employee {
 
     public HourlyEmployee(int empID, Name empName, MyDate birthDate, MyDate hireDate, float totalHoursWorked, double ratePerHour) {
         super(empID, empName, birthDate, hireDate);
-
+        validateValues(totalHoursWorked, ratePerHour);
         this.totalHoursWorked = totalHoursWorked;
         this.ratePerHour = ratePerHour;
 
     }
 
-
     public float getTotalHoursWorked() {return totalHoursWorked;}
-    public void setTotalHoursWorked(float totalHoursWorked) {this.totalHoursWorked = totalHoursWorked;}
+    public void setTotalHoursWorked(float totalHoursWorked) {validateValues(totalHoursWorked, ratePerHour); this.totalHoursWorked = totalHoursWorked;}
 
     public double getRatePerHour() {return ratePerHour;}
-    public void setRatePerHour(double ratePerHour) {this.ratePerHour = ratePerHour; }
+    public void setRatePerHour(double ratePerHour) {validateValues(totalHoursWorked, ratePerHour); this.ratePerHour = ratePerHour; }
 
-    
     public void displayHourlyEmployee() {
         System.out.printf("[Hourly] ID: %d | Name: %s | Salary: ₱%.2f%n",
                 getEmpID(), getEmpName(), computeSalary());
     }
 
-    @Override 
+    @Override
+    public void displayEmployee() {displayHourlyEmployee();}
+
+    @Override
     public void display(){displayHourlyEmployee();System.out.println();}
 
     @Override
     public String toString() {
-        return
-                String.format(" [ID: %-3s", getEmpID()) +
-                " | Name: " +  getEmpName() +
-                " | DOB: " +   getBirthDate() +
-                " | Hired: " + getHireDate() +
-                " | Hours: " + getTotalHoursWorked() +
-                " |  Rate: ₱" + getRatePerHour()
-               
-                ;
+        return String.format("HourlyEmployee [ID: %d, Name: %s, Total Salary: ₱%,.2f]",
+            getEmpID(), getEmpName(), computeSalary());
     }
 
     public double computeSalary(int currentMonth) {
-        double salary = 0  ;
-        double bonus = (this.getBirthDate().getMonth() == currentMonth) ? 5000 : 0;
-
-        
-        if (this.totalHoursWorked <= 40) {
-            salary = totalHoursWorked * ratePerHour;
-        }
-        else if (this.totalHoursWorked > 40) { //40 hours pay + overtime pay
-            salary = (40 * this.ratePerHour) +  ( (this.totalHoursWorked - 40) * (this.ratePerHour * 1.5) );
-        }
-        
-        else {System.out.println("Something went wrong");}
-                
-        return salary + bonus;
+        double regularHours = Math.min(totalHoursWorked, 40);
+        double overtimeHours = Math.max(totalHoursWorked - 40, 0);
+        return regularHours * ratePerHour + overtimeHours * ratePerHour * 1.5 + getBirthdayBonus(currentMonth);
 
     }
 
-    public double computeSalary() {
-        return computeSalary(-1);
-    }
+    public double computeSalary() {return computeSalary(-1);}
 
     @Override
     public boolean equals(Object preTest) {
@@ -85,13 +66,14 @@ public class HourlyEmployee extends Employee {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), totalHoursWorked, ratePerHour);
-    }
+    public int hashCode() {return Objects.hash(super.hashCode(), totalHoursWorked, ratePerHour);}
 
     @Override
-    public HourlyEmployee clone() {
-        return (HourlyEmployee) super.clone();
+    public HourlyEmployee clone() {return (HourlyEmployee) super.clone();}
+
+    private void validateValues(float hours, double rate) {
+        if (hours < 0) throw new IllegalArgumentException("Total hours worked cannot be negative");
+        if (rate < 0) throw new IllegalArgumentException("Rate per hour cannot be negative");
     }
 
 }

@@ -1,8 +1,6 @@
-package version4;
+package version5;
 
 import java.util.Objects;
-
-//for version 3 override equals, hashCode, and clone.
 
 public class Name implements Cloneable {
     private String firstName;
@@ -25,7 +23,6 @@ public class Name implements Cloneable {
         this.suffix = "N/A";
     }
 
-
     public Name(String firstName, String middleName, String lastName, String suffix) {
         this.firstName = firstName;
         this.middleName = middleName;
@@ -33,37 +30,19 @@ public class Name implements Cloneable {
         this.suffix = suffix;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
 
-    public String getMiddleName() {
-        return middleName;
-    }
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
+    public String getMiddleName() {return middleName;}
+    public void setMiddleName(String middleName) {this.middleName = middleName;}
 
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public String getLastName() {return lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
 
-    public String getSuffix() {
-        return suffix;
-    }
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
+    public String getSuffix() {return suffix;}
+    public void setSuffix(String suffix) {this.suffix = suffix;}
 
-    public String getFullName() {
-        return String.format("%s %s %s %s", firstName, middleName, lastName, suffix );
-    }
+    public String getFullName() {return String.format("%s %s %s %s", firstName, middleName, lastName, suffix );}
     public void setFullName(String firstName, String middleName, String lastname, String suffix) {
          this.firstName = firstName;
          this.middleName = middleName;
@@ -76,11 +55,6 @@ public class Name implements Cloneable {
     }
 
     private boolean theres_no(String private_var) {return private_var == null || private_var.isEmpty();}
-
-
-
-
-//for version 3 override equals, hashCode, and clone.
 
 @Override
     public String toString() {
@@ -107,18 +81,15 @@ public class Name implements Cloneable {
                Objects.equals(this.lastName, other.lastName) &&
                Objects.equals(this.suffix, other.suffix)
                     //can implement full comparison later
-            ) 
+            )
             {return true;}
 
         else return false;
     }
 
    @Override
-   public int hashCode() {
-       return Objects.hash(firstName, middleName, lastName, suffix);
-   }
+   public int hashCode() {return Objects.hash(firstName, middleName, lastName, suffix);}
 
-   
    @Override
    public Name clone() {
        try {
@@ -128,6 +99,5 @@ public class Name implements Cloneable {
             throw new AssertionError(e);
         }
    }
-
 
 }
